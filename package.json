@@ -24,7 +24,7 @@
     "yslow": "^3.1.0"
   },
   "scripts": {
-    "mongo": "mkdir data && mongod --dbpath ./data --fork --logpath ./mongodb.log",
+    "mongo": "mkdir data 2> /dev/null && mongod --dbpath ./data --fork --logpath ./mongodb.log",
     "postinstall": "bower install && gulp",
     "start": "npm run perf-interface && atlasboard start",
     "perf-interface": "pm2 startOrRestart processes.json"

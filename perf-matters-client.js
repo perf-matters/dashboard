@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var compression = require('compression');
 var YSLOW = require('yslow').YSLOW;
 var doc = require('jsdom').jsdom();
+var metricsRetriever = require('./metrics/index');
 
 var http = require('http');
 var hookConfig = require('./config/dashboard_common').config.siteSpeed.hook;
@@ -45,16 +46,20 @@ function sendMetricsRequest () {
 }
 
 app.get('/har', function (req, res) {
-    MetricModel.find({}, '-_id').sort('request.timing.performanceMetricsDone').limit(10).exec(function (err, metrics) {
-        if (err) {
+    MetricModel
+        .find({}, '-_id')
+        .sort('-request.timing.performanceMetricsDone')
+        .limit(20)
+        .exec(function (err, metrics) {
+            if (err || !metrics.length) {
+                sendMetricsRequest();
+                res.status(404).send({message: 'No data yet.'});
+                return;
+            }
+            metrics = metrics.reverse();
             sendMetricsRequest();
-            res.status(404).send({message: 'Request queued.'});
-            return;
-        }
-
-        sendMetricsRequest();
-        res.status(200).send(metrics);
-    });
+            res.status(200).send(metricsRetriever(metrics));
+        });
 });
 
 app.put('/hook', function (req, res) {
@@ -65,7 +70,12 @@ app.put('/hook', function (req, res) {
         metric.report = YSLOW.util.getResults(importHar.context, 'all');
 
         var metricDocument = new MetricModel(metric);
-        metricDocument.save();
+        metricDocument.save(function (err) {
+            if (err) {
+                console.log(err);
+            }
+        });
+
         res.status(201).send();
     } else {
         res.status(400).send();

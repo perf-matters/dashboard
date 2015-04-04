@@ -1,21 +1,13 @@
 widget = {
     //runs when we receive data from the job
     onData: function(el, data) {
-        var metrics = JSON.parse(data.json);
+        var metrics = JSON.parse(data.metrics);
 
-        if (!metrics.HAR) {
+        if (!metrics) {
             return;
         }
 
-        var loadingTime = (metrics.report.lt / 1000).toFixed(3).replace('.', ',');
-
-        //The parameters our job passed through are in the data object
-        //el is our widget element, so our actions should all be relative to that
-        if (data.title) {
-            $('h2', el).text(data.title);
-        }
-
-        console.log(metrics);
-        $('.content h3 .value', el).html(loadingTime);
+        var ctx = document.getElementById("pageLoadTimes").getContext("2d");
+        var myNewChart = new Chart(ctx).Line(metrics.pageLoadTimes);
     }
 };

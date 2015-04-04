@@ -40,6 +40,6 @@ module.exports = function(config, dependencies, job_callback) {
     // and send the result to the registered atlasboard widgets.
     // Have a look at test/siteSpeed for an example of how to unit tests this easily by mocking easyRequest calls
     dependencies.request('http://localhost:9999/har', function(err, resp) {
-        job_callback(err, { title: config.widgetTitle, json: resp.body });
+        job_callback(err, { title: config.widgetTitle, metrics: resp.body });
     });
 };
