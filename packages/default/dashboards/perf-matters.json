@@ -1,25 +1,51 @@
 {
   "layout": {
     "title": false,
-    "customJS": ["Chart.min.js"],
+    "customJS": ["Chart.min.js", "custom.js"],
     "gridSize" : { "columns" : 6, "rows" : 6 },
     "widgets": [
+      {
+        "enabled": true,
+        "row": 0,
+        "col": 0,
+        "width": 0,
+        "height": 0,
+        "widget" : "siteSpeed",
+        "job" : "siteSpeed",
+        "config": "siteSpeed"
+      },
       {
         "enabled": true,
         "row": 1,
         "col": 1,
         "width": 3,
         "height": 2,
-        "widget" : "siteSpeed",
-        "job" : "siteSpeed",
-        "config": "siteSpeed"
+        "widget" : "pageLoadTimes",
+        "job" : "pageLoadTimes",
+        "config": "pageLoadTimes"
+      },
+      {
+        "enabled": true,
+        "row": 1,
+        "col": 4,
+        "width": 3,
+        "height": 2,
+        "widget" : "resourcesBySize",
+        "job" : "resourcesBySize",
+        "config": "resourcesBySize"
       }
     ]
   },
 
   "config": {
     "siteSpeed": {
-      "interval": 60000
+      "interval": 30000
+    },
+    "pageLoadTimes": {
+      "interval": 30000
+    },
+    "resourcesBySize": {
+      "interval": 30000
     }
   }
 }

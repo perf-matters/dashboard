@@ -1,5 +1,5 @@
 /**
- * Job: siteSpeed
+ * Job: pageLoadTimes
  *
  * Expected configuration:
  *
@@ -24,11 +24,11 @@ module.exports = function(config, dependencies, job_callback) {
 
     // # 2. CONFIGURATION CHECK
     // You probably want to check that the right configuration has been passed to the job.
-    // You can add unit tests to ensure this (see test/siteSpeed file)
+    // You can add unit tests to ensure this (see test/pageLoadTimes file)
     // Your config check may look something like this:
     // if (!config.globalAuth || !config.globalAuth[authName] ||
     //   !config.globalAuth[authName].username || !config.globalAuth[authName].password) {
-    //   return job_callback('no credentials found in the siteSpeed job. Please check the global authentication file!');
+    //   return job_callback('no credentials found in the pageLoadTimes job. Please check the global authentication file!');
     // }
 
     // # 3. USE OF JOB_CALLBACK
@@ -38,8 +38,8 @@ module.exports = function(config, dependencies, job_callback) {
 
     // This is an example of how to make an HTTP call to google using the easyRequest dependency,
     // and send the result to the registered atlasboard widgets.
-    // Have a look at test/siteSpeed for an example of how to unit tests this easily by mocking easyRequest calls
-    dependencies.request('http://localhost:9999/getMetrics', function(err, resp) {
-        job_callback(err, {});
+    // Have a look at test/pageLoadTimes for an example of how to unit tests this easily by mocking easyRequest calls
+    dependencies.request('http://localhost:9999/pageLoadTimes', function(err, resp) {
+        job_callback(err, {metrics: resp.body});
     });
 };

@@ -2,7 +2,7 @@
   "apps" : [
     {
       "name": "Perf-matters client",
-      "script": "perf-matters-client.js"
+      "script": "perf-matters-client/index.js"
     }
   ]
 }
