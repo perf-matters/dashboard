@@ -1,0 +1,8 @@
+{
+  "apps" : [
+    {
+      "name": "Perf-matters client",
+      "script": "perf-matters-client.js"
+    }
+  ]
+}

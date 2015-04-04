@@ -1,0 +1,25 @@
+{
+  "layout": {
+    "title": false,
+    "customJS": [],
+    "gridSize" : { "columns" : 4, "rows" : 4 },
+    "widgets": [
+      {
+        "enabled": true,
+        "row": 1,
+        "col": 1,
+        "width": 4,
+        "height": 4,
+        "widget" : "siteSpeed",
+        "job" : "siteSpeed",
+        "config": "siteSpeed"
+      }
+    ]
+  },
+
+  "config": {
+    "siteSpeed": {
+      "interval": 30000
+    }
+  }
+}

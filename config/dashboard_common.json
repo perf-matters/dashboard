@@ -1,0 +1,16 @@
+{
+    "config" : {
+        "siteSpeed": {
+            "hook": {
+                "hostname": "localhost",
+                "port": "3000",
+                "path": "/metrics/har",
+                "params": {
+                    "serviceUrl": "http://google.com",
+                    "connectionType":"4G",
+                    "hookUrl": "http://localhost:9999/hook"
+                }
+            }
+        }
+    }
+}
