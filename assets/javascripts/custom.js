@@ -1,1 +1,1 @@
-$('[data-widget-id="siteSpeed"]').hide();
+$('[data-widget-id="getMetrics"]').hide();

@@ -10,16 +10,20 @@ var MetricModel = mongoose.model('Metric', {
 var currentMetrics = [];
 
 module.exports.getCurrentMetrics = function () {
-    return currentMetrics;
+    return currentMetrics.reverse();
+};
+
+module.exports.getCurrentMetric = function () {
+    return currentMetrics[0];
 };
 
 module.exports.updateMetrics = function () {
     MetricModel
         .find({}, '-_id')
         .sort('-request.timing.performanceMetricsDone')
-        .limit(10)
+        .limit(20)
         .exec(function (err, metrics) {
-            currentMetrics = metrics.reverse();
+            currentMetrics = metrics;
         });
 };
 

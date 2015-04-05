@@ -18,21 +18,27 @@ module.exports = function (rawData) {
         options: {
             chart: {
                 title: 'Page load times',
-                subtitle: 'in milliseconds (ms)'
+                subtitle: 'in seconds'
             },
             curveType: 'function',
             backgroundColor: '#0f0f0f',
             titleTextStyle: {
-                color: '#ccc'
+                color: '#ccc',
+                fontSize: 18
             },
             legend: {
                 textStyle: {
                     color: '#ccc',
                     fontSize: 14
                 },
-                position: 'top',
+                position: 'in',
                 alignment: 'start',
                 maxLines: 1
+            },
+            vAxis: {
+                viewWindow: {
+                    min: 0
+                }
             }
         }
     };
@@ -44,8 +50,8 @@ module.exports = function (rawData) {
     );
 
     for (var i = 0; i < metrics.rows.length; i++) {
-        metrics.rows[i].push(rawData[i].HAR.log.pages[0].pageTimings.onContentLoad);
-        metrics.rows[i].push(rawData[i].HAR.log.pages[0].pageTimings.onLoad);
+        metrics.rows[i].push(rawData[i].HAR.log.pages[0].pageTimings.onContentLoad / 1000);
+        metrics.rows[i].push(rawData[i].HAR.log.pages[0].pageTimings.onLoad / 1000);
     }
 
     return metrics;

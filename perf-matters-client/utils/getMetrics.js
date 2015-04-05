@@ -1,5 +1,5 @@
 var http = require('http');
-var hookConfig = require('../../config/dashboard_common').config.siteSpeed.hook;
+var hookConfig = require('../../config/dashboard_common').config.getMetrics.hook;
 
 function getPathFromConfig () {
     var paramsString = hookConfig.path + '?';

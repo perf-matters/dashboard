@@ -1,6 +1,6 @@
 {
     "config" : {
-        "siteSpeed": {
+        "getMetrics": {
             "hook": {
                 "hostname": "localhost",
                 "port": "3000",

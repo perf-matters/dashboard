@@ -11,7 +11,7 @@ var app = express();
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(compression());
 
-var mongo = require('./utils/mongo');
+var mongo = require('./db/mongo');
 mongo.setMetricsInterval();
 
 app.get('/getMetrics', function (req, res) {
@@ -24,7 +24,7 @@ app.get('/pageLoadTimes', function (req, res) {
 });
 
 app.get('/resourcesBySize', function (req, res) {
-    res.status(200).send(metrics.getResourcesBySize(mongo.getCurrentMetrics()));
+    res.status(200).send(metrics.getResourcesBySize(mongo.getCurrentMetric()));
 });
 
 app.put('/hook', function (req, res) {
