@@ -1,8 +1,8 @@
 {
   "layout": {
-    "title": false,
+    "title": "My perf dashboard",
     "customJS": ["Chart.min.js", "custom.js"],
-    "gridSize" : { "columns" : 6, "rows" : 6 },
+    "gridSize" : { "columns" : 3, "rows" : 3 },
     "widgets": [
       {
         "enabled": true,
@@ -18,8 +18,8 @@
         "enabled": true,
         "row": 1,
         "col": 1,
-        "width": 3,
-        "height": 2,
+        "width": 2,
+        "height": 1,
         "widget" : "pageLoadTimes",
         "job" : "pageLoadTimes",
         "config": "pageLoadTimes"
@@ -27,9 +27,9 @@
       {
         "enabled": true,
         "row": 1,
-        "col": 4,
-        "width": 3,
-        "height": 2,
+        "col": 3,
+        "width": 1,
+        "height": 1,
         "widget" : "resourcesBySize",
         "job" : "resourcesBySize",
         "config": "resourcesBySize"
@@ -45,7 +45,7 @@
       "interval": 30000
     },
     "resourcesBySize": {
-      "interval": 30000
+      "interval": 120000
     }
   }
 }

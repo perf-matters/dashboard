@@ -7,7 +7,26 @@ widget = {
             return;
         }
 
-        var ctx = document.getElementById("pageLoadTimes").getContext("2d");
-        var myNewChart = new Chart(ctx).Line(metrics);
+        if (!google.charts) {
+            google.load('visualization', '1.1', {
+                packages: ['line', 'corechart'],
+                callback: drawChart
+            });
+        } else {
+            drawChart();
+        }
+
+        function drawChart() {
+            var chartData = new google.visualization.DataTable();
+
+            for (var i = 0; i < metrics.columns.length; i++) {
+                chartData.addColumn(metrics.columns[i].type, metrics.columns[i].name);
+            }
+
+            chartData.addRows(metrics.rows);
+            var chart = new google.charts.Line(document.getElementById('page_load_times'));
+
+            chart.draw(chartData, google.charts.Line.convertOptions(metrics.options));
+        }
     }
 };

@@ -7,7 +7,20 @@ widget = {
             return;
         }
 
-        var ctx = document.getElementById("resourcesBySize").getContext("2d");
-        var myNewChart = new Chart(ctx).Line(metrics);
+        if (!google.visualization) {
+            google.load('visualization', '1.1', {
+                packages: ['line', 'corechart'],
+                callback: drawChart
+            });
+        } else {
+            drawChart();
+        }
+
+        function drawChart() {
+            var chartData = new google.visualization.arrayToDataTable(metrics.data);
+            var chart = new google.visualization.PieChart(document.getElementById('resources_by_size'));
+
+            chart.draw(chartData, metrics.options);
+        }
     }
 };

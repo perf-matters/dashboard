@@ -17,7 +17,7 @@ module.exports.updateMetrics = function () {
     MetricModel
         .find({}, '-_id')
         .sort('-request.timing.performanceMetricsDone')
-        .limit(20)
+        .limit(10)
         .exec(function (err, metrics) {
             currentMetrics = metrics.reverse();
         });

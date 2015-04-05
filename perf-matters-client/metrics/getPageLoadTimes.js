@@ -1,27 +1,52 @@
 module.exports = function (rawData) {
-    return {
-        labels: rawData.map(function (dataSet) {return new Date(dataSet.HAR.log.pages[0].startedDateTime).toLocaleTimeString()}),
-        datasets: [
+    var metrics = {
+        columns: [
             {
-                label: "DOM content loaded",
-                fillColor: "rgba(220,220,220,0.2)",
-                strokeColor: "rgba(220,220,220,1)",
-                pointColor: "rgba(220,220,220,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,220,220,1)",
-                data: rawData.map(function (dataSet) {return dataSet.HAR.log.pages[0].pageTimings.onContentLoad})
+                type: 'string',
+                name: 'Time'
             },
             {
-                label: "Page loaded",
-                fillColor: "rgba(151,187,205,0.2)",
-                strokeColor: "rgba(151,187,205,1)",
-                pointColor: "rgba(151,187,205,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(151,187,205,1)",
-                data: rawData.map(function (dataSet) {return dataSet.HAR.log.pages[0].pageTimings.onLoad})
+                type: 'number',
+                name: 'onContentLoad'
+            },
+            {
+                type: 'number',
+                name: 'onLoad'
             }
-        ]
+        ],
+        rows: [],
+        options: {
+            chart: {
+                title: 'Page load times',
+                subtitle: 'in milliseconds (ms)'
+            },
+            curveType: 'function',
+            backgroundColor: '#0f0f0f',
+            titleTextStyle: {
+                color: '#ccc'
+            },
+            legend: {
+                textStyle: {
+                    color: '#ccc',
+                    fontSize: 14
+                },
+                position: 'top',
+                alignment: 'start',
+                maxLines: 1
+            }
+        }
+    };
+
+    rawData.map(
+        function (dataSet) {
+            return metrics.rows.push([new Date(dataSet.HAR.log.pages[0].startedDateTime).toLocaleTimeString()]);
+        }
+    );
+
+    for (var i = 0; i < metrics.rows.length; i++) {
+        metrics.rows[i].push(rawData[i].HAR.log.pages[0].pageTimings.onContentLoad);
+        metrics.rows[i].push(rawData[i].HAR.log.pages[0].pageTimings.onLoad);
     }
+
+    return metrics;
 };

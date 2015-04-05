@@ -14,10 +14,8 @@
   },
   "dependencies": {
     "body-parser": "^1.12.2",
-    "bower": "^1.4.1",
     "compression": "^1.4.3",
     "express": "^4.12.3",
-    "gulp": "^3.8.11",
     "jsdom": "^4.1.0",
     "main-bower-files": "^2.6.2",
     "mongoose": "^4.0.1",
@@ -25,7 +23,6 @@
   },
   "scripts": {
     "mongo": "mkdir data 2> /dev/null && mongod --dbpath ./data --fork --logpath ./mongodb.log",
-    "postinstall": "bower install && gulp",
     "start": "npm run perf-interface && atlasboard start",
     "perf-interface": "pm2 startOrRestart processes.json"
   }
