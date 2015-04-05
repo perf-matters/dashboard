@@ -22,8 +22,8 @@
     "yslow": "^3.1.0"
   },
   "scripts": {
-    "mongo": "mkdir data 2> /dev/null && mongod --dbpath ./data --fork --logpath ./mongodb.log",
-    "start": "npm run perf-interface && atlasboard start",
+    "mongo": "mkdir -p data && mongod --dbpath ./data --fork --logpath ./mongodb.log",
+    "dash": "npm run perf-interface && atlasboard start",
     "perf-interface": "pm2 startOrRestart processes.json"
   }
 }

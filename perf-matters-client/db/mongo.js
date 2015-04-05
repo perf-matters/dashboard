@@ -1,20 +1,33 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/dashboard');
+var url = require('url');
+var dbName = url.parse(
+    require('../../config/dashboard_common').config.getMetrics.hook.params.serviceUrl
+).hostname.replace(/\./g, '_');
 
-var MetricModel = mongoose.model('Metric', {
+mongoose.connect('mongodb://localhost:27017/' + dbName);
+var Schema = mongoose.Schema;
+
+var schema = new Schema({
     request: Object,
     HAR: Object,
     report: Object
+}, {
+    capped: {
+        max: 21,
+        size: 5242880
+    }
 });
+
+var MetricModel = mongoose.model('Metric', schema);
 
 var currentMetrics = [];
 
 module.exports.getCurrentMetrics = function () {
-    return currentMetrics.reverse();
+    return currentMetrics;
 };
 
 module.exports.getCurrentMetric = function () {
-    return currentMetrics[0];
+    return currentMetrics[currentMetrics.length - 1];
 };
 
 module.exports.updateMetrics = function () {
@@ -23,7 +36,7 @@ module.exports.updateMetrics = function () {
         .sort('-request.timing.performanceMetricsDone')
         .limit(20)
         .exec(function (err, metrics) {
-            currentMetrics = metrics;
+            currentMetrics = metrics.reverse();
         });
 };
 

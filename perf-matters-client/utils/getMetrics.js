@@ -5,7 +5,11 @@ function getPathFromConfig () {
     var paramsString = hookConfig.path + '?';
     var params = [];
     for (var param in hookConfig.params) {
-        params.push(param + '=' + encodeURIComponent(hookConfig.params[param]));
+        var value = hookConfig.params[param];
+        if (typeof value === 'object') {
+            value = JSON.stringify(value);
+        }
+        params.push(param + '=' + encodeURIComponent(value));
     }
     return paramsString + params.join('&');
 }

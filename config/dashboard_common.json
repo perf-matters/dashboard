@@ -7,7 +7,11 @@
                 "path": "/metrics/har",
                 "params": {
                     "serviceUrl": "http://aquatech.net.pl",
-                    "connectionType":"4G",
+                    "connection": {
+                        "downstreamKbps": 10000,
+                        "upstreamKbps": 2000,
+                        "latency": 10
+                    },
                     "hookUrl": "http://localhost:9999/hook"
                 }
             }

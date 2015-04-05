@@ -39,13 +39,13 @@
 
   "config": {
     "getMetrics": {
-      "interval": 60000
+      "interval": 30000
     },
     "pageLoadTimes": {
-      "interval": 30000
+      "interval": 5000
     },
     "resourcesBySize": {
-      "interval": 30000
+      "interval": 5000
     }
   }
 }
