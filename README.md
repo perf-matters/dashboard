@@ -10,9 +10,14 @@ npm i
 npm i -g pm2
 ```
 
+## Dependencies
+
+MongoDB
+
 ## Run dashboard
 
 ```
-npm run start [port]
+npm run mongo
+npm run dash [port]
 ```
 Port is optional (default is 3000).
