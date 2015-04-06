@@ -1,0 +1,28 @@
+.content {
+    font-size: 18px;
+    font-family: helvetica, arial;
+    color: #ccc;
+    font-weight: bold;
+    text-align: center;
+}
+h4 {
+    margin: 1em 0 3em;
+}
+.psi {
+    font-size: 0;
+}
+.psi .metric {
+    display: inline-block;
+    width: 33%;
+    font-size: 24px;
+    vertical-align: top;
+}
+.psi .metric span {
+  display: block;
+}
+.value {
+    color: rgb(16, 150, 24);
+}
+.under-treshold {
+    color: rgb(219, 68, 55);
+}

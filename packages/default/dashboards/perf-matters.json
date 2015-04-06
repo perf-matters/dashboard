@@ -43,6 +43,26 @@
         "widget" : "requestsByResources",
         "job" : "requestsByResources",
         "config": "requestsByResources"
+      },
+      {
+        "enabled": true,
+        "row": 2,
+        "col": 3,
+        "width": 1,
+        "height": 1,
+        "widget" : "psi",
+        "job" : "psi",
+        "config": "psi"
+      },
+      {
+        "enabled": true,
+        "row": 3,
+        "col": 1,
+        "width": 1,
+        "height": 1,
+        "widget" : "psi",
+        "job" : "psi",
+        "config": "psi-mobile"
       }
     ]
   },
@@ -59,6 +79,16 @@
     },
     "requestsByResources": {
       "interval": 5000
+    },
+    "psi": {
+      "interval": 30000,
+      "strategy": "desktop",
+      "treshold": 75
+    },
+    "psi-mobile": {
+      "interval": 30000,
+      "strategy": "mobile",
+      "treshold": 75
     }
   }
 }

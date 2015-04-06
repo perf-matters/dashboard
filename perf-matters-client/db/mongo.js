@@ -13,8 +13,8 @@ var schema = new Schema({
     report: Object
 }, {
     capped: {
-        max: 21,
-        size: 5242880
+        max: 120,
+        size: 524288000
     }
 });
 

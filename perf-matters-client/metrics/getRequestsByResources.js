@@ -1,4 +1,8 @@
 module.exports = function (rawData) {
+    if (!rawData) {
+        return null;
+    }
+
     var metrics = {
         data: [
             ['Request', 'weight in KB'],

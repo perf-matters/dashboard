@@ -6,7 +6,7 @@
                 "port": "3000",
                 "path": "/metrics/har",
                 "params": {
-                    "serviceUrl": "http://aquatech.net.pl",
+                    "serviceUrl": "http://allegro.pl",
                     "connection": {
                         "downstreamKbps": 10000,
                         "upstreamKbps": 2000,
@@ -15,6 +15,12 @@
                     "hookUrl": "http://localhost:9999/hook"
                 }
             }
+        },
+        "psi": {
+            "serviceUrl": "http://allegro.pl"
+        },
+        "psi-mobile": {
+            "serviceUrl": "http://allegro.pl"
         }
     }
 }
