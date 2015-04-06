@@ -1,12 +1,12 @@
 {
-    "config" : {
+    "config": {
         "getMetrics": {
+            "interval": 30000,
             "hook": {
                 "hostname": "localhost",
                 "port": "3000",
                 "path": "/metrics/har",
                 "params": {
-                    "serviceUrl": "http://allegro.pl",
                     "connection": {
                         "downstreamKbps": 10000,
                         "upstreamKbps": 2000,
@@ -16,11 +16,24 @@
                 }
             }
         },
+        "pageLoadTimes": {
+            "interval": 5000
+        },
+        "resourcesBySize": {
+            "interval": 5000
+        },
+        "requestsByResources": {
+            "interval": 5000
+        },
         "psi": {
-            "serviceUrl": "http://allegro.pl"
+            "interval": 30000,
+            "strategy": "desktop",
+            "treshold": 75
         },
         "psi-mobile": {
-            "serviceUrl": "http://allegro.pl"
+            "interval": 30000,
+            "strategy": "mobile",
+            "treshold": 75
         }
     }
 }

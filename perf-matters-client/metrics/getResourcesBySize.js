@@ -1,8 +1,4 @@
-module.exports = function (rawData) {
-    if (!rawData) {
-        return null;
-    }
-
+module.exports = function (promise) {
     var metrics = {
         data: [
             ['Resources', 'weight in KB'],
@@ -27,13 +23,22 @@ module.exports = function (rawData) {
         }
     };
 
-    metrics.data[1].push(rawData.report.stats.css.w / 1024);
-    metrics.data[2].push(rawData.report.stats.image.w / 1024);
-    metrics.data[3].push(rawData.report.stats.doc.w / 1024);
-    metrics.data[4].push(rawData.report.stats.js.w / 1024);
+    return promise.then(function (rawData) {
+        if (!rawData.length) {
+            return null;
+        }
+        rawData = rawData[0];
 
-    for (var i = 1; i < metrics.data.length; i++) {
-        metrics.data[i][0] += ' (' + metrics.data[i][1].toFixed(2) + 'KB)';
-    }
-    return metrics;
+        metrics.data[1].push(rawData.report.stats.css.w / 1024);
+        metrics.data[2].push(rawData.report.stats.image.w / 1024);
+        metrics.data[3].push(rawData.report.stats.doc.w / 1024);
+        metrics.data[4].push(rawData.report.stats.js.w / 1024);
+
+        for (var i = 1; i < metrics.data.length; i++) {
+            metrics.data[i][0] += ' (' + metrics.data[i][1].toFixed(2) + 'KB)';
+        }
+
+        console.log(metrics);
+        return metrics;
+    });
 };

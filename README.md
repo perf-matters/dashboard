@@ -1,8 +1,5 @@
 # Perf-matters dashboard
 
-## Configuration
-Change ```serviceUrl``` property in ```config/dashboard_common.json``` to your site url.
-
 ## Instalation
 
 ```
@@ -14,10 +11,17 @@ npm i -g pm2
 
 MongoDB
 
+## Configuration
+Copy ```packages/default/dashboards/example.json``` contents to new file in same folder to create new dashboard.
+Replace ```serviceUrl``` with your website url.
+Dashboard will be running at
+```http://localhost:[port]/[file name]```.
+
 ## Run dashboard
 
 ```
 npm run mongo
 npm run dash [port]
 ```
+
 Port is optional (default is 3000).

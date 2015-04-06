@@ -12,34 +12,9 @@
  */
 
 module.exports = function(config, dependencies, job_callback) {
-
-    // ## 1. USE OF DEPENDENCIES ##
-    // You can use the following dependencies in your job:
-    // - dependencies.easyRequest : a wrapper on top of the "request" module
-    // - dependencies.request : the popular http request module itself
-    // - dependencies.logger : atlasboard logger interface
-    // - dependencies.underscore
-    // - dependencies.moment
-    // - dependencies.storage : a simple persistance layer for Atlasboard
-
-    // # 2. CONFIGURATION CHECK
-    // You probably want to check that the right configuration has been passed to the job.
-    // You can add unit tests to ensure this (see test/requestsByResources file)
-    // Your config check may look something like this:
-    // if (!config.globalAuth || !config.globalAuth[authName] ||
-    //   !config.globalAuth[authName].username || !config.globalAuth[authName].password) {
-    //   return job_callback('no credentials found in the requestsByResources job. Please check the global authentication file!');
-    // }
-
-    // # 3. USE OF JOB_CALLBACK
-    // Using nodejs callback standard conventions, you should return an error or null (if success)
-    // as the first parameter, and the actual data to be sent to the widget as the second parameter.
-    // Atlasboard will deal with the rest.
-
-    // This is an example of how to make an HTTP call to google using the easyRequest dependency,
-    // and send the result to the registered atlasboard widgets.
-    // Have a look at test/requestsByResources for an example of how to unit tests this easily by mocking easyRequest calls
-    dependencies.request('http://localhost:9999/requestsByResources', function(err, resp) {
-        job_callback(err, {metrics: resp.body});
-    });
+    dependencies.request(
+        'http://localhost:9999/requestsByResources?serviceUrl=' + encodeURIComponent(config.serviceUrl),
+        function(err, resp) {
+            job_callback(err, {metrics: resp.body});
+        });
 };
