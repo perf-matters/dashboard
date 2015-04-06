@@ -7,11 +7,15 @@ module.exports = function (rawData) {
             },
             {
                 type: 'number',
-                name: 'onContentLoad'
+                name: 'Response time'
             },
             {
                 type: 'number',
-                name: 'onLoad'
+                name: 'DOM content loaded'
+            },
+            {
+                type: 'number',
+                name: 'Page loaded'
             }
         ],
         rows: [],
@@ -50,6 +54,7 @@ module.exports = function (rawData) {
     );
 
     for (var i = 0; i < metrics.rows.length; i++) {
+        metrics.rows[i].push(rawData[i].HAR.log.entries[0].time / 1000);
         metrics.rows[i].push(rawData[i].HAR.log.pages[0].pageTimings.onContentLoad / 1000);
         metrics.rows[i].push(rawData[i].HAR.log.pages[0].pageTimings.onLoad / 1000);
     }

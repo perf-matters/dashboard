@@ -33,6 +33,16 @@
         "widget" : "resourcesBySize",
         "job" : "resourcesBySize",
         "config": "resourcesBySize"
+      },
+      {
+        "enabled": true,
+        "row": 2,
+        "col": 2,
+        "width": 1,
+        "height": 1,
+        "widget" : "requestsByResources",
+        "job" : "requestsByResources",
+        "config": "requestsByResources"
       }
     ]
   },
@@ -45,6 +55,9 @@
       "interval": 5000
     },
     "resourcesBySize": {
+      "interval": 5000
+    },
+    "requestsByResources": {
       "interval": 5000
     }
   }

@@ -27,6 +27,10 @@ app.get('/resourcesBySize', function (req, res) {
     res.status(200).send(metrics.getResourcesBySize(mongo.getCurrentMetric()));
 });
 
+app.get('/requestsByResources', function (req, res) {
+    res.status(200).send(metrics.getRequestsByResources(mongo.getCurrentMetric()));
+});
+
 app.put('/hook', function (req, res) {
     var metric = req.body;
     var importHar = YSLOW.harImporter.run(doc, metric.HAR, 'ydefault');
