@@ -3,6 +3,11 @@
     {
       "name": "Perf-matters client",
       "script": "perf-matters-client/index.js"
+    },
+    {
+      "name": "Dashboards",
+      "script": "node_modules/.bin/atlasboard",
+      "args": ["start", "8080"]
     }
   ]
 }

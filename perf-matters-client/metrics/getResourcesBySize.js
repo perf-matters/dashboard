@@ -38,7 +38,6 @@ module.exports = function (promise) {
             metrics.data[i][0] += ' (' + metrics.data[i][1].toFixed(2) + 'KB)';
         }
 
-        console.log(metrics);
         return metrics;
     });
 };

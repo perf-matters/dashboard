@@ -15,13 +15,11 @@ MongoDB
 Copy ```packages/default/dashboards/example.json``` contents to new file in same folder to create new dashboard.
 Replace ```serviceUrl``` with your website url.
 Dashboard will be running at
-```http://localhost:[port]/[file name]```.
+```http://localhost:8080/[file name]```.
 
 ## Run dashboard
 
 ```
 npm run mongo
-npm run dash [port]
+npm run dash
 ```
-
-Port is optional (default is 3000).
