@@ -4,7 +4,8 @@ var crypto = require('crypto');
 var schema = mongoose.Schema({
     request: Object,
     HAR: Object,
-    report: Object
+    report: Object,
+    HARerrors: Object
 }, {
     capped: {
         max: 120,

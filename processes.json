@@ -7,7 +7,7 @@
     {
       "name": "Dashboards",
       "script": "node_modules/.bin/atlasboard",
-      "args": ["start", "8080"]
+      "args": ["start", "3333"]
     }
   ]
 }

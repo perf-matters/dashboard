@@ -25,7 +25,7 @@
   },
   "scripts": {
     "mongo": "mkdir -p data && mongod --dbpath ./data --fork --logpath ./mongodb.log",
-    "dash": "npm run perf-interface && atlasboard start",
+    "dash": "npm run perf-interface",
     "perf-interface": "pm2 startOrRestart processes.json"
   }
 }
